@@ -59,9 +59,7 @@ All optional. Set them as environment variables on the Vercel project.
 
 ## Deploy
 
-1. Import this repository into Vercel (framework preset: Other; no build command).
-2. Optional: add `GITHUB_TOKEN` as above.
-3. Add `laggi.sh` (and `www.laggi.sh`) under the project's Domains. The DNS for `laggi.sh` already points at Vercel.
+The Vercel project `laggish-landing` deploys every push to `main` to https://laggi.sh (framework preset: Other; no build command). `www.laggi.sh` redirects to `laggi.sh`. To make GitHub reads more reliable, add `GITHUB_TOKEN` as above.
 
 ## Develop
 
@@ -70,6 +68,8 @@ npm install
 npm run dev      # http://localhost:4100
 npm test
 ```
+
+The README sanitizer, sanitize-html, is bundled into `lib/vendor/sanitize-html.cjs`. It needs an ESM-only parser, and Vercel's function loader can't `require()` ES modules. After updating sanitize-html, run `npm run vendor` and commit the new bundle. `test/load.test.js` fails if the function stops loading on Vercel's terms.
 
 To check contrast in every mode, as the design guide asks, with puppeteer installed:
 
@@ -84,6 +84,7 @@ NO_SANDBOX=1 node scripts/audit.mjs http://localhost:4100/ http://localhost:4100
 | `lib/projects.js` | Which repositories are projects, their live sites, the cache |
 | `lib/github.js` | GitHub API, raw files, commit feeds, live-site checks |
 | `lib/readme.js` | README name, summary, template detection, safe HTML |
+| `lib/vendor/sanitize-html.cjs` | Bundled sanitize-html; made by `scripts/vendor.mjs`, never edited |
 | `lib/views.js` | The pages |
 | `lib/status.js`, `lib/format.js` | State words and formats (DESIGN.md 3.1 and 11) |
 | `public/app.js` | Filter, Cards/List switch, local times, the age readout |

@@ -5,13 +5,17 @@
   "description": "laggi.sh: every laggish project, read live from GitHub",
   "scripts": {
     "dev": "node scripts/dev-server.mjs",
-    "test": "node --test"
+    "test": "node --test",
+    "vendor": "node scripts/vendor.mjs"
   },
   "engines": {
     "node": ">=20"
   },
   "dependencies": {
-    "marked": "^16.0.0",
+    "marked": "^16.0.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2",
     "sanitize-html": "^2.17.0"
   }
 }
