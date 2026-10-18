@@ -55,6 +55,7 @@ All optional. Set them as environment variables on the Vercel project.
 | `LAGGISH_DOMAIN` | `laggi.sh` | The domain that makes a repository a project |
 | `LAGGISH_TOPIC` | `laggish` | The topic that adds a repository |
 | `LAGGISH_HIDE_TOPIC` | `laggish-hidden` | The topic that keeps a repository off the list |
+| `LAGGISH_ONLY` | none | Repository names, separated by commas. When set, the site lists only these and nothing else: no other repositories table, and other repositories' pages return 404. Delete it to go back to the rules above |
 | `FRESH_SECONDS` | `300` | How long one read of GitHub stays fresh |
 
 ## Deploy

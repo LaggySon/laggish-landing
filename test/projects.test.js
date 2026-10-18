@@ -2,7 +2,7 @@ import assert from "node:assert/strict"
 import { test } from "node:test"
 import { formatEventTime, plural } from "../lib/format.js"
 import { html } from "../lib/html.js"
-import { findLiveLink } from "../lib/projects.js"
+import { findLiveLink, pickListed } from "../lib/projects.js"
 import { wordFor } from "../lib/status.js"
 
 test("finds a laggi.sh link in a README before anything else", () => {
@@ -39,4 +39,27 @@ test("formats counts and event times", () => {
   assert.equal(formatEventTime("2026-10-18T09:02:15Z", now), "09:02:15")
   assert.equal(formatEventTime("2026-10-13T09:02:15Z", now), "10-13 09:02:15")
   assert.equal(formatEventTime("2025-12-30T09:02:15Z", now), "2025-12-30 09:02:15")
+})
+
+test("lists projects and other repositories by the rules when no names are set", () => {
+  const all = [
+    { name: "a", laggish: true, pushedAt: "2026-01-01" },
+    { name: "b", laggish: false, pushedAt: "2026-02-01" },
+    { name: "c", laggish: true, pushedAt: "2026-03-01" },
+  ]
+  const { projects, others } = pickListed(all)
+  assert.deepEqual(projects.map((p) => p.name), ["c", "a"])
+  assert.deepEqual(others.map((p) => p.name), ["b"])
+})
+
+test("lists only the named repositories, in any case, when names are set", () => {
+  const all = [
+    { name: "Transitmaps", laggish: true, pushedAt: "2026-01-01" },
+    { name: "showish", laggish: false, pushedAt: "2026-02-01" },
+    { name: "aptscore", laggish: true, pushedAt: "2026-03-01" },
+  ]
+  const { projects, others } = pickListed(all, ["transitmaps", "Showish"])
+  assert.deepEqual(projects.map((p) => p.name), ["showish", "Transitmaps"])
+  assert.ok(projects.every((p) => p.laggish))
+  assert.deepEqual(others, [])
 })
