@@ -1,0 +1,394 @@
+/* laggi.sh: the app's own layout on top of tokens.css and components.css.
+   Classes use the lg- prefix (DESIGN.md 0.3). Default density: no override. */
+
+/* The components set display on their own classes, which would beat [hidden] */
+[hidden] {
+  display: none !important;
+}
+
+.lg-topbar-link {
+  font-size: var(--text-sm);
+}
+
+.lg-failure-text {
+  color: var(--failure-text);
+}
+
+/* ---------- Index ---------- */
+
+.lg-filter {
+  width: 14rem;
+}
+
+.lg-stats {
+  justify-content: flex-start;
+  margin: var(--space-4) 0 var(--space-6);
+  padding: 0 var(--space-2);
+}
+
+/* Cards or list, chosen in the toolbar and kept in localStorage.
+   <head> sets html[data-view] before the first paint. */
+.lg-view-list {
+  display: none;
+}
+
+:root[data-view="list"] .lg-view-cards {
+  display: none;
+}
+
+:root[data-view="list"] .lg-view-list {
+  display: block;
+}
+
+.lg-cards {
+  grid-auto-rows: auto;
+}
+
+.lg-lead {
+  font-size: var(--text-md);
+  line-height: 1.45;
+}
+
+.lg-more {
+  font-size: var(--text-sm);
+  line-height: 1.45;
+  color: var(--muted-foreground);
+}
+
+/* Clamped text that expands in place (DESIGN.md 7.20); app.js marks it when it is clipped */
+.ui-clamp[role="button"] {
+  cursor: pointer;
+}
+
+.ui-clamp[aria-expanded="true"] {
+  display: block;
+  -webkit-line-clamp: unset;
+  line-clamp: none;
+  overflow: visible;
+}
+
+.lg-cards .ui-spec {
+  margin-top: auto;
+}
+
+.lg-table-wrap {
+  --table-max-h: none;
+}
+
+.lg-cell-desc {
+  min-width: 16rem;
+  max-width: 36rem;
+  color: var(--muted-foreground);
+}
+
+.lg-others {
+  margin-top: var(--space-7);
+}
+
+.lg-others .ui-table-wrap {
+  margin-top: var(--space-2);
+}
+
+.lg-rules {
+  max-width: 40rem;
+  margin-top: var(--space-6);
+}
+
+.lg-rules-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-3) 0 var(--space-4);
+  font-size: var(--text-sm);
+  line-height: 1.55;
+  color: var(--muted-foreground);
+}
+
+.lg-rules-body ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding-left: 1.1rem;
+}
+
+/* ---------- Project page ---------- */
+
+.lg-back {
+  margin-bottom: var(--space-3);
+  font-size: var(--text-sm);
+}
+
+.lg-detail-header {
+  align-items: center;
+}
+
+.lg-detail-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-4);
+  min-width: 0;
+}
+
+.lg-detail-id {
+  font-size: var(--text-sm);
+}
+
+.lg-detail-lead {
+  max-width: 46rem;
+  font-size: var(--text-md);
+  line-height: 1.55;
+}
+
+.lg-detail-more {
+  max-width: 46rem;
+  margin-top: var(--space-2);
+  font-size: var(--text-sm);
+  line-height: 1.55;
+  color: var(--muted-foreground);
+}
+
+.lg-detail {
+  display: grid;
+  grid-template-columns: minmax(0, 46rem) minmax(18rem, 30rem);
+  grid-template-areas:
+    "readme facts"
+    "readme commits";
+  grid-template-rows: auto 1fr;
+  align-items: start;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+
+.lg-readme {
+  grid-area: readme;
+}
+
+.lg-facts {
+  grid-area: facts;
+}
+
+.lg-commits {
+  grid-area: commits;
+}
+
+@media (max-width: 900px) {
+  .lg-detail {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "facts"
+      "readme"
+      "commits";
+    grid-template-rows: none;
+  }
+}
+
+.lg-facts .ui-kv {
+  grid-template-columns: 7.5rem 1fr;
+}
+
+.lg-facts .ui-kv > :nth-last-child(-n + 2) {
+  border-bottom: 0;
+}
+
+.lg-status-cell {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.lg-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.lg-reasons {
+  font-family: var(--font-sans);
+}
+
+.lg-panel-note {
+  font-size: var(--text-sm);
+}
+
+.lg-commit-list {
+  list-style: none;
+}
+
+.lg-commit {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.lg-commit:last-child {
+  border-bottom: 0;
+}
+
+.lg-commit-message {
+  font-size: var(--text-sm);
+}
+
+.lg-commit-meta {
+  font-size: var(--text-xs);
+  color: var(--muted-foreground);
+}
+
+.lg-template {
+  margin-top: var(--space-4);
+}
+
+.lg-template > .lg-prose {
+  margin-top: var(--space-4);
+}
+
+.lg-footnote {
+  margin-top: var(--space-6);
+  font-size: var(--text-sm);
+}
+
+/* ---------- README (long-form text, DESIGN.md 4) ---------- */
+
+.lg-prose {
+  max-width: 40rem;
+  padding: var(--space-2) var(--space-3) var(--space-4);
+  font-size: var(--text-md);
+  line-height: 1.55;
+  overflow-wrap: break-word;
+}
+
+.lg-prose > * + * {
+  margin-top: 0.8em;
+}
+
+.lg-prose :is(h2, h3, h4, h5, h6) {
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  scroll-margin-top: var(--space-6);
+}
+
+.lg-prose > :is(h2, h3, h4, h5, h6) {
+  margin-top: 1.6em;
+}
+
+.lg-prose > :first-child {
+  margin-top: 0;
+}
+
+.lg-prose h2 {
+  font-size: var(--text-lg);
+}
+
+.lg-prose h3 {
+  font-size: var(--text-md);
+}
+
+.lg-prose :is(h4, h5, h6) {
+  font-size: var(--text-sm);
+}
+
+.lg-prose a {
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.lg-prose a:hover {
+  text-decoration: none;
+}
+
+.lg-prose .lg-anchor {
+  font-weight: 400;
+  color: var(--label);
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity var(--duration-color) ease;
+}
+
+.lg-prose :is(h2, h3, h4, h5, h6):hover .lg-anchor,
+.lg-prose .lg-anchor:focus-visible {
+  opacity: 1;
+}
+
+.lg-prose :is(ul, ol) {
+  padding-left: 1.25rem;
+}
+
+.lg-prose li + li,
+.lg-prose li > :is(ul, ol) {
+  margin-top: 0.3em;
+}
+
+.lg-prose li:has(> input[type="checkbox"]) {
+  list-style: none;
+  margin-left: -1.1rem;
+}
+
+.lg-prose :not(pre) > code {
+  padding: 0.05em 0.3em;
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: var(--hover-surface);
+  border-radius: var(--radius);
+}
+
+.lg-prose kbd {
+  padding: 0 0.3em;
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  border: 1px solid var(--border-input);
+  border-radius: var(--radius);
+}
+
+.lg-prose blockquote {
+  padding-left: var(--space-5);
+  color: var(--muted-foreground);
+  border-left: var(--rail) solid var(--border);
+}
+
+.lg-prose hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+}
+
+.lg-prose img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+.lg-prose .ui-table-wrap {
+  max-height: none;
+}
+
+.lg-prose .ui-table td {
+  white-space: normal;
+  vertical-align: top;
+}
+
+.lg-prose details > summary {
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.lg-prose dt {
+  font-weight: 600;
+}
+
+.lg-prose dd {
+  padding-left: var(--space-6);
+}
+
+@media (max-width: 640px) {
+  .lg-filter {
+    width: 100%;
+  }
+
+  .ui-toolbar .ui-field--inline {
+    flex: 1 1 100%;
+  }
+}
