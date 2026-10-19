@@ -88,5 +88,5 @@ NO_SANDBOX=1 node scripts/audit.mjs http://localhost:4100/ http://localhost:4100
 | `lib/vendor/sanitize-html.cjs` | Bundled sanitize-html; made by `scripts/vendor.mjs`, never edited |
 | `lib/views.js` | The pages |
 | `lib/status.js`, `lib/format.js` | State words and formats (DESIGN.md 3.1 and 11) |
-| `public/app.js` | Filter, Cards/List switch, local times, the age readout |
+| `public/app.js` | Filter and Cards/List switch (shown from 7 repositories), local times, the age readout |
 | `scripts/dev-server.mjs` | Local server that runs the same handler |

@@ -10,24 +10,15 @@
   font-size: var(--text-sm);
 }
 
-.lg-failure-text {
-  color: var(--failure-text);
-}
-
 /* ---------- Index ---------- */
 
 .lg-filter {
   width: 14rem;
 }
 
-.lg-stats {
-  justify-content: flex-start;
-  margin: var(--space-4) 0 var(--space-6);
-  padding: 0 var(--space-2);
-}
-
 /* Cards or list, chosen in the toolbar and kept in localStorage.
-   <head> sets html[data-view] before the first paint. */
+   <head> sets html[data-view] before the first paint. Short lists
+   have no toolbar and no lg-view-* classes, so they always show cards. */
 .lg-view-list {
   display: none;
 }
@@ -47,12 +38,6 @@
 .lg-lead {
   font-size: var(--text-md);
   line-height: 1.45;
-}
-
-.lg-more {
-  font-size: var(--text-sm);
-  line-height: 1.45;
-  color: var(--muted-foreground);
 }
 
 /* Clamped text that expands in place (DESIGN.md 7.20); app.js marks it when it is clipped */
@@ -202,10 +187,6 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
-}
-
-.lg-reasons {
-  font-family: var(--font-sans);
 }
 
 .lg-panel-note {

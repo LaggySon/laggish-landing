@@ -135,7 +135,7 @@ const initFilter = () => {
       if (on) otherShown++
     }
     if (count) {
-      count.textContent = q
+      count.textContent = q && otherRows.length
         ? `${plural(shown, "project", "projects")} · ${plural(otherShown, "other repository", "other repositories")}`
         : plural(shown, "project", "projects")
     }
