@@ -62,6 +62,13 @@ All optional. Set them as environment variables on the Vercel project.
 
 The Vercel project `laggish-landing` deploys every push to `main` to https://laggi.sh (framework preset: Other; no build command). `www.laggi.sh` redirects to `laggi.sh`. To make GitHub reads more reliable, add `GITHUB_TOKEN` as above.
 
+## Resume
+
+`/resume` is Michael Richards's broadcast-production resume, and `/resume.pdf` the printable copy. Unlike the project list, it does not come from GitHub, so it stays up when GitHub is down.
+
+- The credits are in `lib/resume-data.js` (read from the Tranquility Gaming and EGF YouTube channels, every one checked on screen). The words around them and the selected broadcasts are in `lib/resume.js`. Every count on the page and in the PDF is computed from the credits.
+- After changing either file, rebuild the PDF and commit it: `CHROME_PATH=/path/to/chrome npm run resume-pdf` (add `NO_SANDBOX=1` in a container). The PDF has its own print design and embeds Geist from the `geist` package.
+
 ## Develop
 
 ```sh
@@ -87,6 +94,8 @@ NO_SANDBOX=1 node scripts/audit.mjs http://localhost:4100/ http://localhost:4100
 | `lib/readme.js` | README name, summary, template detection, safe HTML |
 | `lib/vendor/sanitize-html.cjs` | Bundled sanitize-html; made by `scripts/vendor.mjs`, never edited |
 | `lib/views.js` | The pages |
+| `lib/resume.js`, `lib/resume-data.js`, `lib/resume-view.js` | The resume: words, credits, page |
+| `scripts/resume-pdf.mjs` | Prints `public/resume.pdf` from the same data |
 | `lib/status.js`, `lib/format.js` | State words and formats (DESIGN.md 3.1 and 11) |
 | `public/app.js` | Filter and Cards/List switch (shown from 7 repositories), local times, the age readout |
 | `scripts/dev-server.mjs` | Local server that runs the same handler |
