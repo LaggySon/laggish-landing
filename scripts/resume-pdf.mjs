@@ -10,7 +10,7 @@ import { formatMonthName, plural } from "../lib/format.js"
 import { html, raw } from "../lib/html.js"
 import {
   allCredits,
-  bullets,
+  positionsOf,
   creditsOf,
   grandFinals,
   selected,
@@ -69,6 +69,7 @@ h2 { margin-top: 13pt; padding-bottom: 3pt; font-size: 8.2pt; font-weight: 700; 
 .job-dates { font-size: 8.8pt; color: #3d3d3d; white-space: nowrap; }
 .job-role { font-weight: 600; color: #1f3d73; }
 .job-about { font-size: 8.6pt; color: #5a5a5a; }
+.position { margin-top: 4pt; }
 ul { margin-top: 3pt; padding-left: 11pt; }
 li { margin-top: 1.6pt; }
 li::marker { color: #8a8a8a; }
@@ -130,12 +131,20 @@ const doc = html`<!doctype html>
 <h2>Experience</h2>
 ${orgs.map((org) => {
   const credits = creditsOf(org)
+  const positions = positionsOf(org)
+  const from = positions.map((x) => x.from).sort()[0]
+  const to = positions.map((x) => x.to).sort().at(-1)
   return html`
 <div class="job">
-  <div class="job-head"><span class="job-org">${org.role}</span><span class="job-dates">${range(spanOf(credits))}</span></div>
-  <div class="job-head"><a class="job-role" href="${org.url}">${org.name}</a><span class="job-dates">${plural(credits.length, "credited broadcast")}</span></div>
+  <div class="job-head"><a class="job-org" href="${org.url}">${org.name}</a><span class="job-dates">${range({ from, to })}</span></div>
   <div class="job-about">${org.about}.</div>
-  <ul>${bullets(org).map((b) => html`<li>${b}</li>`)}</ul>
+  ${positions.map(
+    (x) => html`
+  <div class="position">
+    <div class="job-head"><span class="job-role">${x.title}</span><span class="job-dates">${range(x)}${x.credited ? ` · ${plural(credits.length, "credited broadcast")}` : ""}</span></div>
+    <ul>${x.points.map((b) => html`<li>${b}</li>`)}</ul>
+  </div>`,
+  )}
 </div>`
 })}
 
