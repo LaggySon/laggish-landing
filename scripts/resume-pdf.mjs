@@ -20,6 +20,7 @@ import {
   skills,
   spanOf,
   summary,
+  titles,
   tools,
   vodUrl,
 } from "../lib/resume.js"
@@ -39,7 +40,6 @@ const geist = (weight, file) => {
 const fonts = [geist(400, "Geist-Regular.woff2"), geist(600, "Geist-SemiBold.woff2"), geist(700, "Geist-Bold.woff2")].join("\n")
 
 const all = allCredits()
-const span = spanOf(all)
 const range = ({ from, to }) => (from === to ? formatMonthName(from) : `${formatMonthName(from)} – ${formatMonthName(to)}`)
 const host = (href) => href.replace(/^https?:\/\//, "")
 
@@ -123,7 +123,7 @@ const doc = html`<!doctype html>
   <div class="figure"><b class="num">${all.length}</b><span>Broadcasts</span></div>
   <div class="figure"><b class="num">${produced(all)}</b><span>Produced</span></div>
   <div class="figure"><b class="num">${observed(all)}</b><span>Observed</span></div>
-  <div class="figure"><b class="num">${span.from.slice(0, 4)}–${span.to.slice(0, 4)}</b><span>Active</span></div>
+  <div class="figure"><b class="num">${titles.length}</b><span>Titles</span></div>
 </div>
 
 <h2>Experience</h2>
