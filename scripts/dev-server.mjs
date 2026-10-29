@@ -13,6 +13,7 @@ const types = {
   ".svg": "image/svg+xml",
   ".ico": "image/x-icon",
   ".png": "image/png",
+  ".pdf": "application/pdf",
 }
 
 createServer(async (req, res) => {
