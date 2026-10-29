@@ -163,7 +163,7 @@ ${orgs.map((org) => {
     <div class="rows">${skills.map((s) => html`<div class="row skill"><span class="k">${s.label}</span><span class="v">${s.value}</span></div>`)}</div>
   </div>
   <div>
-    <h2>Built for broadcasts and events</h2>
+    <h2>Built for broadcasts</h2>
     <div class="rows">${tools.map(
       (t) => html`<div class="row skill"><span class="k"><a href="${t.href}">${t.name}</a></span><span class="v">${t.what}. <span class="sub">${t.stack} · ${host(t.href)}</span></span></div>`,
     )}</div>
