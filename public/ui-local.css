@@ -543,3 +543,22 @@
 .lg-selected {
   margin-top: var(--space-6);
 }
+
+.lg-position {
+  margin-top: var(--space-5);
+}
+
+.lg-position + .lg-position {
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border);
+}
+
+.lg-position-dates {
+  margin-left: var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 400;
+}
+
+.lg-position .lg-job-points {
+  margin-top: var(--space-3);
+}
