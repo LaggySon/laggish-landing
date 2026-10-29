@@ -2,7 +2,7 @@ import assert from "node:assert/strict"
 import { existsSync } from "node:fs"
 import { test } from "node:test"
 import { handle } from "../lib/router.js"
-import { allCredits, grandFinals, observed, orgs, produced, selected } from "../lib/resume.js"
+import { allCredits, observed, orgs, produced, selected } from "../lib/resume.js"
 
 test("every credit has a month, a title, a role, and a video", () => {
   for (const c of allCredits()) {
@@ -17,7 +17,6 @@ test("the counts come from the credits", () => {
   assert.equal(all.length, 103)
   assert.equal(produced(all), 94)
   assert.equal(observed(all), 15)
-  assert.equal(grandFinals(all), 10)
   assert.deepEqual(orgs.map((o) => o.groups.flatMap((g) => g.credits).length), [92, 11])
 })
 

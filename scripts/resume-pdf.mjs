@@ -12,7 +12,6 @@ import {
   allCredits,
   positionsOf,
   creditsOf,
-  grandFinals,
   selected,
   observed,
   orgs,
@@ -124,7 +123,6 @@ const doc = html`<!doctype html>
   <div class="figure"><b class="num">${all.length}</b><span>Broadcasts</span></div>
   <div class="figure"><b class="num">${produced(all)}</b><span>Produced</span></div>
   <div class="figure"><b class="num">${observed(all)}</b><span>Observed</span></div>
-  <div class="figure"><b class="num">${grandFinals(all)}</b><span>Grand finals</span></div>
   <div class="figure"><b class="num">${span.from.slice(0, 4)}–${span.to.slice(0, 4)}</b><span>Active</span></div>
 </div>
 
